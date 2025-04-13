@@ -76,10 +76,16 @@ export default function ChatBot() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  };
+
   return (
     <>
       {isOpen && (
-        <div className="fixed bottom-20 right-8 w-80 bg-white shadow-lg rounded-lg border p-4 z-50">
+        <div className="fixed bottom-20 right-8 max-w-xl bg-white shadow-lg rounded-lg border p-4 z-50 mb-5">
           <div className="flex justify-between items-center border-b pb-2 mb-2">
             <h4 className="font-bold">Career Advisor</h4>
             <button onClick={toggleChat} className="text-gray-600">
@@ -91,7 +97,7 @@ export default function ChatBot() {
               <div
                 key={idx}
                 className={`mb-2 ${
-                  msg.sender === "ai" ? "text-blue-600" : "text-gray-800"
+                  msg.sender === "ai" ? "text-gray-600" : "text-black"
                 }`}
               >
                 <strong>{msg.sender === "ai" ? "AI:" : "You:"}</strong>{" "}
@@ -104,12 +110,13 @@ export default function ChatBot() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
               placeholder="Type your career query..."
-              className="flex-1 border rounded-l px-2 py-1"
+              className="flex-1 border rounded-md px-2 py-1"
             />
             <button
               onClick={sendMessage}
-              className="bg-blue-600 text-white px-3 rounded-r flex items-center"
+              className="bg-black ml-2 text-white px-3 rounded-md flex items-center"
               disabled={loading}
             >
               {loading ? (
@@ -124,9 +131,9 @@ export default function ChatBot() {
       {/* Persistent Chat Toggle Button */}
       <button
         onClick={toggleChat}
-        className="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg z-50"
+        className="fixed bottom-8 right-8 bg-black text-white p-4 rounded-full shadow-lg z-50 animate-bounce"
       >
-        {isOpen ? "Close Chat" : "Chat"}
+        💬
       </button>
     </>
   );
