@@ -23,15 +23,15 @@ export default async function Header() {
   await checkUser();
 
   return (
-    <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60">
+    <header className="fixed top-0 px-3 w-full  border-2 border-neutral-200 bg-white backdrop-blur-md z-50 supports-[backdrop-filter]:bg-white rounded-full mt-5 mx-auto shadow-xl">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/">
           <Image
-            src={"/logo.png"}
-            alt="Sensai Logo"
+            src={"/logo-white.png"}
+            alt="AspireAI Logo"
             width={200}
             height={60}
-            className="h-12 py-1 w-auto object-contain"
+            className="h-12 py-1 w-auto object-contain border-1 bordeer-neutral-200"
           />
         </Link>
 
@@ -88,7 +88,7 @@ export default async function Header() {
 
           <SignedOut>
             <SignInButton>
-              <Button variant="outline">Sign In</Button>
+              <Button variant="outline" className='border border-neutral-400'>Sign In</Button>
             </SignInButton>
           </SignedOut>
 

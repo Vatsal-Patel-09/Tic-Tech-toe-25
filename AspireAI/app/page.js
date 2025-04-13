@@ -46,7 +46,7 @@ export default function LandingPage() {
                   <div className="flex flex-col items-center justify-center">
                     {feature.icon}
                     <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-neutral-700">
                       {feature.description}
                     </p>
                   </div>
@@ -108,7 +108,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-muted/50">
+      {/* <section className="w-full py-12 md:py-24 bg-muted/50">
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-3xl font-bold text-center mb-12">
             What Our Users Say
@@ -155,7 +155,7 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
       <section className="w-full py-12 md:py-24">
@@ -185,21 +185,21 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full">
-        <div className="mx-auto py-24 gradient rounded-lg">
+      <section className="w-full text-black bg-white">
+        <div className="mx-auto py-24 rounded-lg">
           <div className="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tighter text-primary-foreground sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-black">
               Ready to Accelerate Your Career?
             </h2>
-            <p className="mx-auto max-w-[600px] text-primary-foreground/80 md:text-xl">
+            <p className="mx-auto max-w-[600px] md:text-xl text-gray-700">
               Join thousands of professionals who are advancing their careers
               with AI-powered guidance.
             </p>
             <Link href="/dashboard" passHref>
               <Button
                 size="lg"
-                variant="secondary"
-                className="h-11 mt-5 animate-bounce"
+                variant="default"
+                className="h-11 mt-5 animate-bounce "
               >
                 Start Your Journey Today <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
