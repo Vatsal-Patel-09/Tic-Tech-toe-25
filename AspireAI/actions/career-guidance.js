@@ -7,99 +7,53 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-export async function generateCareerAdvice(data) {
+/**
+ * Generates personalized career advisory based on a user message and optional chat history.
+ *
+ * @param {Object} params - Function parameters.
+ * @param {string} params.userMessage - The latest message/input from the user.
+ * @param {string} [params.chatHistory] - Optional previous conversation history (as plain text).
+ * @returns {Promise<string>} - A promise that resolves to the AI-generated response.
+ */
+export async function askCareerAdvisory({ userMessage, chatHistory = "" }) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
+  // Retrieve minimal user info to tailor the career advice.
   const user = await db.user.findUnique({
     where: { clerkUserId: userId },
+    select: {
+      industry: true,
+      experience: true,
+      skills: true,
+      bio: true,
+    },
   });
-
   if (!user) throw new Error("User not found");
 
-  const prompt = `
-    You are an AI Career Counselor.
+  // Build context from the user profile.
+  const contextInfo = `User Profile:
+Industry: ${user.industry || "N/A"}
+Experience: ${user.experience || "N/A"}
+Skills: ${user.skills && user.skills.length ? user.skills.join(", ") : "N/A"}
+Bio: ${user.bio || "N/A"}`;
 
-    Based on the following user profile, suggest personalized career paths, relevant industries, potential job roles, and next steps for career growth. Also suggest useful certifications or skills the user can gain.
+  // Optionally include previous conversation history, if any.
+  const conversationContext = chatHistory ? `Conversation History:\n${chatHistory}\n\n` : "";
 
-    User Profile:
-    - Name: ${user.name}
-    - Education: ${user.education}
-    - Interests: ${user.interests?.join(", ")}
-    - Skills: ${user.skills?.join(", ")}
-    - Experience: ${user.experience}
-    - Goals: ${user.careerGoals}
+  // Construct the prompt for the AI model.
+  const prompt = `${conversationContext}${contextInfo}
 
-    Guidelines:
-    1. Keep the tone friendly, helpful, and encouraging.
-    2. Provide clear, structured advice in markdown format.
-    3. Include a short summary at the beginning.
-    4. Add tips for improving career prospects and confidence.
+User: ${userMessage}
 
-    Format everything neatly in markdown.
-  `;
+You are a professional career advisor. Based on the user profile provided above, offer personalized, actionable career advice. Provide a clear, concise response in plain text without asking clarifying questions.`;
 
   try {
     const result = await model.generateContent(prompt);
-    const content = result.response.text().trim();
-
-    const guidance = await db.careerAdvice.create({
-      data: {
-        content,
-        userId: user.id,
-        status: "completed",
-      },
-    });
-
-    return guidance;
+    const responseText = result.response.text().trim();
+    return responseText;
   } catch (error) {
-    console.error("Error generating career guidance:", error.message);
-    throw new Error("Failed to generate career guidance");
+    console.error("Error generating career advisory response:", error);
+    throw new Error("Failed to generate career advisory response");
   }
-}
-
-export async function getCareerGuidance() {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) throw new Error("User not found");
-
-  return await db.careerAdvice.findMany({
-    where: { userId: user.id },
-    orderBy: { createdAt: "desc" },
-  });
-}
-
-export async function getCareerAdvice(id) {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) throw new Error("User not found");
-
-  return await db.careerAdvice.findUnique({
-    where: { id, userId: user.id },
-  });
-}
-
-export async function deleteCareerAdvice(id) {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) throw new Error("User not found");
-
-  return await db.careerAdvice.delete({
-    where: { id, userId: user.id },
-  });
 }
