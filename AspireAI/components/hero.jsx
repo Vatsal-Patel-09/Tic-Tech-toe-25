@@ -32,13 +32,12 @@ const HeroSection = () => {
       <div className="space-y-6 text-center" style={{ maxWidth: '100%' }}>
         <div className="space-y-6 mx-auto">
           <h1 className="text-5xl font-bold md:text-6xl lg:text-7xl xl:text-7xl gradient-title">
-            Your AI Career Coach for
+          Discover Your Dream Career with AspireAI
             <br />
             Professional Success
           </h1>
           <p className="mx-auto max-w-[600px] text-neutral-600 text-muted-foreground md:text-xl">
-            Advance your career with personalized guidance, interview prep, and
-            AI-powered tools for job success.
+          Your personal AI career coach—guiding you with tailored advice, smart insights, and a roadmap to success.
           </p>
         </div>
         <div className="flex justify-center space-x-4">

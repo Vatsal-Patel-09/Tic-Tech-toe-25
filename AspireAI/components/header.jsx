@@ -23,7 +23,7 @@ export default async function Header() {
   await checkUser();
 
   return (
-    <header className="fixed top-0 px-3 w-full  border-2 border-neutral-200 bg-white backdrop-blur-md z-50 supports-[backdrop-filter]:bg-white rounded-full mt-5 mx-auto shadow-xl">
+    <header className="fixed top-0 px-3 w-full  border-2 border-neutral-200 bg-white backdrop-blur-md z-50 supports-[backdrop-filter]:bg-white rounded-full mt-3 mx-auto shadow-xl">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/">
           <Image

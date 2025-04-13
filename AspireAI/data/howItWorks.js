@@ -8,7 +8,7 @@ export const howItWorks = [
   },
   {
     title: "Craft Your Documents",
-    description: "Create ATS-optimized resumes and compelling cover letters",
+    description: "Create optimized resumes and compelling cover letters",
     icon: <FileEdit className="w-8 h-8 text-primary" />,
   },
   {

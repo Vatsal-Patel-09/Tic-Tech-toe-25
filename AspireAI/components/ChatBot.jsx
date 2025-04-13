@@ -131,7 +131,7 @@ export default function ChatBot() {
       {/* Persistent Chat Toggle Button */}
       <button
         onClick={toggleChat}
-        className="fixed bottom-8 right-8 bg-black text-white p-4 rounded-full shadow-lg z-50 animate-bounce"
+        className="fixed bottom-8 right-8 bg-black px-[17px] text-white py-4 rounded-full shadow-lg z-50 animate-bounce"
       >
         💬
       </button>
