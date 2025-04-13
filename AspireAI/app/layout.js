@@ -22,12 +22,12 @@ export default function RootLayout({ children }) {
     >
       <html lang="en" suppressHydrationWarning>
         <head>
-          <link rel="icon" href="/logo.png" sizes="any" />
+          <link rel="icon" href="/logo-white.png" sizes="any" />
         </head>
         <body className={`${inter.className}`}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >
@@ -36,8 +36,8 @@ export default function RootLayout({ children }) {
             <Toaster richColors />
 
             <footer className="bg-muted/50 py-12">
-              <div className="container mx-auto px-4 text-center text-gray-200">
-                <p>Made with 💗 by RoadsideCoder</p>
+              <div className="container mx-auto px-4 text-center text-gray-500">
+                <p>Made by The Overfitters</p>
               </div>
             </footer>
           </ThemeProvider>
