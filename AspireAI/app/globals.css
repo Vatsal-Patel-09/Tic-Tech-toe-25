@@ -73,7 +73,7 @@ body {
 
 @layer utilities {
   .gradient {
-    @apply bg-gradient-to-b from-gray-400 via-gray-200 to-gray-600;
+    @apply bg-gradient-to-b from-gray-500 to-gray-800;
   }
   .gradient-title {
     @apply gradient font-extrabold tracking-tighter text-transparent bg-clip-text pb-2 pr-2;
@@ -103,10 +103,10 @@ body {
   height: 100%;
   background: linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.1) 1px,
+      rgba(0, 0, 0, 0.1) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
   pointer-events: none;
   z-index: -1;
@@ -119,5 +119,14 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.9));
+  background: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.1));
+}
+
+.overflow-x-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.overflow-x-hidden::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari and Opera */
 }
