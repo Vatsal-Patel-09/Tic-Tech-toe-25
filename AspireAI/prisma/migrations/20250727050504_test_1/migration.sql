@@ -5,10 +5,9 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "name" TEXT,
     "imageUrl" TEXT,
-    "industry" TEXT NOT NULL,
+    "industry" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "title" TEXT,
     "bio" TEXT,
     "experience" INTEGER,
     "skills" TEXT[],
@@ -20,11 +19,10 @@ CREATE TABLE "User" (
 CREATE TABLE "Assessment" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "question" TEXT NOT NULL,
-    "answer" TEXT NOT NULL,
-    "userAnswer" TEXT NOT NULL,
-    "score" DOUBLE PRECISION NOT NULL,
+    "quizScore" DOUBLE PRECISION NOT NULL,
+    "questions" JSONB[],
     "category" TEXT NOT NULL,
+    "improvementTip" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -50,6 +48,9 @@ CREATE TABLE "CoverLetter" (
     "userId" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "jobDescription" TEXT,
+    "companyName" TEXT NOT NULL,
+    "jobTitle" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'draft',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -86,7 +87,7 @@ CREATE INDEX "Assessment_userId_idx" ON "Assessment"("userId");
 CREATE UNIQUE INDEX "Resume_userId_key" ON "Resume"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "CoverLetter_userId_key" ON "CoverLetter"("userId");
+CREATE INDEX "CoverLetter_userId_idx" ON "CoverLetter"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "IndustryInsight_industry_key" ON "IndustryInsight"("industry");
@@ -95,7 +96,7 @@ CREATE UNIQUE INDEX "IndustryInsight_industry_key" ON "IndustryInsight"("industr
 CREATE INDEX "IndustryInsight_industry_idx" ON "IndustryInsight"("industry");
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_industry_fkey" FOREIGN KEY ("industry") REFERENCES "IndustryInsight"("industry") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "User" ADD CONSTRAINT "User_industry_fkey" FOREIGN KEY ("industry") REFERENCES "IndustryInsight"("industry") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Assessment" ADD CONSTRAINT "Assessment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
