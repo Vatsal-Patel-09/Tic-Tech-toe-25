@@ -168,11 +168,11 @@ export default function RootLayout({ children }) {
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-gray-800">Made by The Overfitters:</h3>
                   <p className="mt-2 text-gray-600 text-lg">
-                    vatsal <span className="mx-2">|</span>
-                    prince <span className="mx-2">|</span>
-                    arya <span className="mx-2">|</span>
-                    janavi <span className="mx-2">|</span>
-                    jay
+                    Vatsal <span className="mx-2">|</span>
+                    Prince <span className="mx-2">|</span>
+                    Arya <span className="mx-2">|</span>
+                    Janavi <span className="mx-2">|</span>
+                    Jay
                   </p>
                 </div>
                 {/* Social Media Icons */}
