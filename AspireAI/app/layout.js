@@ -180,6 +180,9 @@ export default function RootLayout({ children }) {
                   {/* Social media icons go here */}
                 </div>
                 {/* Copyright */}
+                {/*<p className="text-sm text-gray-500">
+                  &copy; {new Date().getFullYear()} The Overfitters. All rights reserved.
+                </p>*/}
                 <p className="text-sm text-gray-500">
                   &copy; {new Date().getFullYear()} The Overfitters. All rights reserved.
                 </p>
