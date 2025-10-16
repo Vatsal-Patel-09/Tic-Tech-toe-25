@@ -121,15 +121,13 @@
 // }
 
 
-///
-
 // layout.js
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import Header from "@/components/header";
-import { dark } from "@clerk/themes";
+import { light } from "@clerk/themes";
 import ChatBot from "@/components/ChatBot"; // Import the ChatBot component
 
 const inter = Inter({ subsets: ["latin"] });
