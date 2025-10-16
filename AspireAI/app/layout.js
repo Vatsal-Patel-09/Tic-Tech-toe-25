@@ -159,22 +159,25 @@ export default function RootLayout({ children }) {
               <div className="container mx-auto px-4 text-center">
                 {/* Title and Team Members */}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-gray-800">Made by The Overfitters:</h3>
-                  <p className="mt-2 text-gray-600 text-lg">
+                  <h3 className="text-2xl font-bold text-gray-800">Made with 💗</h3>
+                  {/*<p className="mt-2 text-gray-600 text-lg">
                     Vatsal <span className="mx-2">|</span>
                     Prince <span className="mx-2">|</span>
                     Arya <span className="mx-2">|</span>
                     Janavi <span className="mx-2">|</span>
                     Jay
-                  </p>
+                  </p>*/}
                 </div>
                 {/* Social Media Icons */}
                 <div className="flex justify-center space-x-6 mb-6">
                   {/* Social media icons go here */}
                 </div>
                 {/* Copyright */}
-                <p className="text-sm text-gray-500">
+                {/*<p className="text-sm text-gray-500">
                   &copy; {new Date().getFullYear()} The Overfitters. All rights reserved.
+                </p>*/}
+                <p className="text-sm text-gray-500">
+                  &copy; {new Date().getFullYear()}All rights reserved.
                 </p>
               </div>
             </footer>
