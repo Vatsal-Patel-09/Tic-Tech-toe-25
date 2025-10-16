@@ -129,7 +129,6 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import Header from "@/components/header";
-import { ThemeProvider } from "@/components/theme-provider";
 import { dark } from "@clerk/themes";
 import ChatBot from "@/components/ChatBot"; // Import the ChatBot component
 
@@ -152,12 +151,6 @@ export default function RootLayout({ children }) {
           <link rel="icon" href="/logo-white.png" sizes="any" />
         </head>
         <body className={`${inter.className}`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
             <Header />
             <main className="min-h-screen">{children}</main>
             <Toaster richColors />
@@ -185,7 +178,6 @@ export default function RootLayout({ children }) {
                 </p>
               </div>
             </footer>
-          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
