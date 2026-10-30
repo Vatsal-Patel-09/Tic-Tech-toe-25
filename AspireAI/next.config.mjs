@@ -4,9 +4,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  javascript: {
-    ignoreDuringBuilds: true,
-  },
 
   images: {
     remotePatterns: [
